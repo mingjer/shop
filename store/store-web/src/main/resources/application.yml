@@ -1,0 +1,98 @@
+spring.main.banner-mode: log
+spring.profiles.include:
+  - datasource
+  - common
+
+spring.profiles.active: dev
+
+server.port: 8081
+
+#freemarker
+spring.freemarker:
+  template-loader-path: classpath:/templates/
+  cache: false
+  charset: UTF-8
+  check-template-location: true
+  content-type: text/html
+  expose-request-attributes: true
+  expose-session-attributes: true
+  request-context-attribute: request
+  suffix: .ftl
+
+#coloros sso auth
+coloros:
+  auth.appId: MtZkJHEJ5dgNsjJMp2RBRh
+  auth.appKey: VVNiWZJAhu6nX7YUaSJcTu
+  auth.appSecret: 8l1IMgH+Z/ffMLwt/+994w==
+  auth.ignoreList:
+    - "/**/notification/send"
+    - "/**/notification/index/subscribe"
+    - "/**/notification/sku/reserve"
+    - "/**/product/status"
+    - "/**/division/**"
+    - "/**/service/**"
+
+server.servlet.session.timeout: 1800s
+spring.session.redis.namespace: rm:ss
+server.servlet.session.cookie.name: RMID
+server.servlet.session.cookie.domain: myoas.net
+server.servlet.session.cookie.http-only: true
+server.servlet.session.cookie.max-age: 1800s
+server.servlet.session.cookie.path: /
+
+
+---
+spring:
+  profiles: dev
+
+spring.application.name: 商城-开发
+
+coloros:
+  auth.host: http://i.token.gateway.ucnewtest.wanyol.com
+  auth.login-url: https://account.myoas.net
+  auth.logout-url: https://account.myoas.net/logout.html
+
+swagger.host: dev-api.myoas.net
+
+---
+spring:
+  profiles: test,test1,test2
+
+spring.application.name: 商城-测试
+
+coloros:
+  auth.host: http://i.token.gateway.ucnewtest.wanyol.com
+  auth.login-url: https://account.myoas.net
+  auth.logout-url: https://account.myoas.net/logout.html
+
+swagger.host: test1-api.myoas.net
+
+---
+spring:
+  profiles: awstest
+
+spring.application.name: 商城-UAT
+
+coloros:
+  auth.host: https://itokenf.uc.oppomobile.com
+  auth.login-url: https://id.realme.com
+  auth.logout-url: https://id.realme.com/logout.html
+
+swagger.host: api.myoas.net
+
+server.servlet.session.cookie.domain: realme.com
+
+---
+spring:
+  profiles: prod
+
+spring.application.name: 商城
+
+coloros:
+  auth.host: https://itokenf.uc.oppomobile.com
+  auth.login-url: https://id.realme.com
+  auth.logout-url: https://id.realme.com/logout.html
+
+swagger.host:
+
+server.servlet.session.cookie.domain: realme.com

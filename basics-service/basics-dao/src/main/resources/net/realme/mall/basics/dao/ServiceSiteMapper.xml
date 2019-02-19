@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.realme.mall.basics.dao.ServiceSiteMapper">
+  <resultMap id="BaseResultMap" type="net.realme.mall.basics.model.ServiceSite">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="site_code" jdbcType="VARCHAR" property="siteCode" />
+    <result column="country_id" jdbcType="VARCHAR" property="countryId" />
+    <result column="country_name" jdbcType="VARCHAR" property="countryName" />
+    <result column="province_id" jdbcType="VARCHAR" property="provinceId" />
+    <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+    <result column="city_id" jdbcType="VARCHAR" property="cityId" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+    <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    <result column="post_code" jdbcType="VARCHAR" property="postCode" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="repair_level" jdbcType="TINYINT" property="repairLevel" />
+    <result column="open_time_week" jdbcType="VARCHAR" property="openTimeWeek" />
+    <result column="open_time" jdbcType="VARCHAR" property="openTime" />
+    <result column="close_time" jdbcType="VARCHAR" property="closeTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="owner_type" jdbcType="TINYINT" property="ownerType" />
+    <result column="assess_status" jdbcType="TINYINT" property="assessStatus" />
+    <result column="assess_type" jdbcType="TINYINT" property="assessType" />
+    <result column="assess_data" jdbcType="VARCHAR" property="assessData" />
+    <result column="created_by" jdbcType="INTEGER" property="createdBy" />
+    <result column="updated_by" jdbcType="INTEGER" property="updatedBy" />
+    <result column="created_at" jdbcType="BIGINT" property="createdAt" />
+    <result column="updated_at" jdbcType="BIGINT" property="updatedAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, `name`, site_code, country_id, country_name, province_id, province_name, city_id, 
+    city_name, address, phone_number, longitude, latitude, post_code, `status`, `type`, 
+    repair_level, open_time_week, open_time, close_time, remark, owner_type, assess_status, 
+    assess_type, assess_data, created_by, updated_by, created_at, updated_at
+  </sql>
+
+	<insert id="batchInsert">
+		INSERT INTO `service_site` (id, name, site_code, country_id,
+		country_name, province_id, province_name, city_id, city_name, address,
+		phone_number,longitude,latitude,post_code,`status`,`type`,repair_level,open_time_week,open_time,close_time,
+		remark, owner_type, assess_status, assess_type, assess_data,
+		created_by, updated_by, created_at, updated_at)
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.id,jdbcType=INTEGER},
+			#{item.name,jdbcType=VARCHAR},#{item.siteCode,jdbcType=VARCHAR},
+			#{item.countryId,jdbcType=VARCHAR},#{item.countryName,jdbcType=VARCHAR},#{item.provinceId,jdbcType=VARCHAR},
+			#{item.provinceName,jdbcType=VARCHAR},#{item.cityId,jdbcType=VARCHAR},
+			#{item.cityName,jdbcType=VARCHAR},
+			#{item.address,jdbcType=VARCHAR},
+			#{item.phoneNumber,jdbcType=VARCHAR},#{item.longitude,jdbcType=VARCHAR},
+			#{item.latitude,jdbcType=VARCHAR},#{item.postCode,jdbcType=VARCHAR},
+			#{item.status,jdbcType=TINYINT},
+			#{item.type,jdbcType=TINYINT},
+			#{item.repairLevel,jdbcType=TINYINT},#{item.openTimeWeek,jdbcType=VARCHAR},
+			#{item.openTime,jdbcType=VARCHAR},#{item.closeTime,jdbcType=VARCHAR},#{item.remark,jdbcType=VARCHAR},#{item.ownerType,jdbcType=TINYINT},
+			#{item.assessStatus,jdbcType=TINYINT},#{item.assessType,jdbcType=TINYINT},#{item.assessData,jdbcType=VARCHAR},
+			#{item.createdBy,jdbcType=BIGINT},#{item.updatedBy,jdbcType=BIGINT},
+			#{item.createdAt,jdbcType=BIGINT},#{item.updatedAt,jdbcType=BIGINT})
+		</foreach>
+	</insert>
+</mapper>

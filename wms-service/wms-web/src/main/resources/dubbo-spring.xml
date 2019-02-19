@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+	    http://code.alibabatech.com/schema/dubbo
+	    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="wms" owner="91000206" logger="slf4j"/>
+    <dubbo:registry id="zk" protocol="zookeeper" address="${dubbo.zk.address}"/>
+    <dubbo:protocol name="dubbo" dispatcher="all" server="netty" />
+
+    <dubbo:consumer group="rm-scm" timeout="2000" retries="0"
+                    loadbalance="random" cluster="failover" validation="true"/>
+    <dubbo:reference group="rm-scm" id="skuLogicInventoryService" interface="net.realme.scm.inventory.facade.SkuLogisticInventoryService" check="false" version="1.0" />
+    <dubbo:reference group="rm-mall" id="orderService" interface="net.realme.mall.order.facade.OrderService" check="false" version="1.0" />
+    <dubbo:reference group="rm-mall" id="productSkuService" interface="net.realme.mall.product.facade.ProductSkuService" check="false" version="1.0"/>
+</beans>

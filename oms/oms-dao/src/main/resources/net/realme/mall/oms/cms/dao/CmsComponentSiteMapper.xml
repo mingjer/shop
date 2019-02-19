@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.realme.mall.oms.cms.dao.CmsComponentSiteMapper">
+  <resultMap id="BaseResultMap" type="net.realme.mall.oms.cms.model.CmsComponentSite">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="component_id" jdbcType="INTEGER" property="componentId" />
+    <result column="component_type" jdbcType="VARCHAR" property="componentType" />
+    <result column="component_name" jdbcType="VARCHAR" property="componentName" />
+    <result column="site_code" jdbcType="VARCHAR" property="siteCode" />
+  </resultMap>
+
+  <insert id="batchInsert">
+    insert into cms_component_site (component_id, component_type, component_name, site_code)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.componentId,jdbcType=INTEGER}, #{item.componentType,jdbcType=VARCHAR}, #{item.componentName,jdbcType=VARCHAR}, #{item.siteCode,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+</mapper>

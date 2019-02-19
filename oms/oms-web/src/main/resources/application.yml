@@ -1,0 +1,56 @@
+
+spring.main.banner-mode: log
+
+#for include application-common.yml from hd-common module and application-datasource.yml from hd-dal module
+spring.profiles.include:
+  - datasource
+  - common
+
+spring.profiles.active: dev
+
+spring.mvc.throw-exception-if-no-handler-found: true
+#spring.resources.add-mappings: false
+
+server.tomcat:
+  remote_ip_header: X-Forwarded-For
+  protocol_header: X-Forwarded-Proto
+  port-header: X-Forwarded-Port
+  uri-encoding: UTF-8
+
+server.use-forward-headers: true
+server.port: 8080
+
+#spring.session.store-type: redis
+
+---
+spring:
+  profiles: dev
+  application.name: OMS-开发
+
+swagger.host: dev-oms-api.myoas.net
+
+---
+spring:
+  profiles: test,test1,test2
+  application.name: OMS-测试
+
+swagger.host: test1-oms-api.myoas.net
+
+---
+spring:
+  profiles: awstest
+  application.name: OMS-测试
+
+swagger.host: oms-api.myoas.net
+
+---
+spring:
+  profiles: prod
+  application.name: OMS
+
+swagger.host:
+
+
+
+
+

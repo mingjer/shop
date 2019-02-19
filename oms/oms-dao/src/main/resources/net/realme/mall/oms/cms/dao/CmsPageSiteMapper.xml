@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.realme.mall.oms.cms.dao.CmsPageSiteMapper">
+  <resultMap id="BaseResultMap" type="net.realme.mall.oms.cms.model.CmsPageSite">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="page_id" jdbcType="INTEGER" property="pageId" />
+    <result column="site_code" jdbcType="VARCHAR" property="siteCode" />
+    <result column="uri" jdbcType="VARCHAR" property="uri" />
+  </resultMap>
+
+  <insert id="batchInsert">
+    insert into cms_page_site (page_id, site_code, uri)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.pageId,jdbcType=INTEGER}, #{item.siteCode,jdbcType=VARCHAR}, #{item.uri,jdbcType=VARCHAR})
+    </foreach>
+
+  </insert>
+</mapper>

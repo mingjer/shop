@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.realme.mall.oms.cms.dao.CmsComponentMapper">
+  <resultMap id="BaseResultMap" type="net.realme.mall.oms.cms.model.CmsComponent">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="is_default" jdbcType="TINYINT" property="isDefault" />
+    <result column="site_codes" jdbcType="VARCHAR" property="siteCodes" />
+    <result column="owner_id" jdbcType="INTEGER" property="ownerId" />
+    <result column="owner_name" jdbcType="VARCHAR" property="ownerName" />
+    <result column="created_at" jdbcType="BIGINT" property="createdAt" />
+    <result column="updated_at" jdbcType="BIGINT" property="updatedAt" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="net.realme.mall.oms.cms.model.CmsComponent">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, `type`, `name`, `status`, is_default, site_codes, owner_id, owner_name, created_at, 
+    updated_at
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    content
+  </sql>
+
+  <update id="updateStatus">
+    update cms_component
+    set status = #{status,jdbcType=TINYINT}
+    where type = #{type,jdbcType=VARCHAR} and name= #{name,jdbcType=VARCHAR}
+  </update>
+
+  <sql id="Render_Column_List">
+    is_default, content
+  </sql>
+
+  <select id="selectBySite" resultMap="BaseResultMap">
+    select a.type, a.name, a.is_default, a.content
+    from cms_component a join cms_component_site b on a.id = b.component_id
+    where a.type = #{type,jdbcType=VARCHAR} and a.name = #{name,jdbcType=VARCHAR}
+    and (a.is_default = 1 or b.site_code = #{siteCode,jdbcType=VARCHAR})
+  </select>
+
+  <select id="selectForRender" resultMap="BaseResultMap">
+    select a.type, a.name, a.is_default, a.content
+    from cms_component a join cms_component_site b on a.id = b.component_id
+    where a.type = #{type,jdbcType=VARCHAR}, and a.name in
+    <foreach close=")" collection="names" item="name" open="(" separator=",">
+      #{name,jdbcType=VARCHAR}
+    </foreach>
+    and (a.is_default = 1 or b.site_code = #{siteCode,jdbcType=VARCHAR})
+  </select>
+</mapper>

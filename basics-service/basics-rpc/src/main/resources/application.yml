@@ -1,0 +1,73 @@
+spring.main.banner-mode: log
+spring.profiles.include:
+  - datasource
+  - common
+
+spring.profiles.active: dev
+
+server.port: 8120
+#debug: true
+
+---
+spring:
+  profiles: dev
+
+spring.application.name: RM基础服务-开发
+
+---
+spring:
+  profiles: test
+
+spring.application.name: RM基础服务-测试
+
+---
+spring:
+  profiles: awstest
+
+spring.application.name: RM基础服务-测试
+
+---
+spring:
+  profiles: prod
+
+
+spring.application.name: RM基础服务
+
+
+#mail.send.from: devadmin@realme.net
+#aws.sns.key: AKIAJ56HOXK4BGE7I3OA
+#aws.sns.secret: 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
+#
+#spring.mail:
+#  host: smtp.realme.net
+#  port: 25
+#  username: devadmin@realme.net
+#  password: dk7^dy3-Kmt4G
+#  protocol: smtp
+#  test-connection: false
+#  properties.mail.smtp.connectiontimeout: 5000
+#  properties.mail.smtp.timeout: 3000
+#  properties.mail.smtp.writetimeout: 5000
+#
+##dubbo default configuration
+#dubbo.protocol.port: 20880
+#dubbo.protocol.dispatcher: all
+#
+#dubbo.provider.threads: 1000
+#dubbo.provider.threadpool: fixed
+#dubbo.provider.timeout: 1000
+#dubbo.provider.retries: 1
+#
+#---
+#spring:
+#  profiles: dev
+#
+#dubbo.provider.threads: 20
+#dubbo.zk.address: 172.16.44.159:2181,172.16.44.160:2181,172.16.44.161:2181
+#
+#spring.redis:
+#  cluster:
+#    max-redirects: 3
+#    nodes: 172.16.44.159:6379,172.16.44.160:6379,172.16.44.161:6379,172.16.44.159:6380,172.16.44.160:6380,172.16.44.161:6380
+#  database: 0
+#  timeout: 2000ms

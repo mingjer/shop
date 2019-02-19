@@ -1,0 +1,31 @@
+spring.main.banner-mode: log
+spring.profiles.include:
+  - datasource
+  - common
+
+spring.profiles.active: dev
+
+---
+spring:
+  profiles: dev
+
+spring.application.name: 用户服务-开发
+
+---
+spring:
+  profiles: test
+
+spring.application.name: 用户服务-测试
+
+---
+spring:
+  profiles: awstest
+
+spring.application.name: 用户服务-测试
+
+---
+spring:
+  profiles: prod
+
+
+spring.application.name: 用户服务

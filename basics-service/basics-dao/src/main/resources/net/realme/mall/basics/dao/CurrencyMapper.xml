@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.realme.mall.basics.dao.CurrencyMapper">
+  <resultMap id="BaseResultMap" type="net.realme.mall.basics.model.Currency">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="symbol" jdbcType="VARCHAR" property="symbol" />
+    <result column="abbr" jdbcType="VARCHAR" property="abbr" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="cn_name" jdbcType="VARCHAR" property="cnName" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="created_at" jdbcType="BIGINT" property="createdAt" />
+    <result column="updated_at" jdbcType="BIGINT" property="updatedAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, symbol, abbr, `name`, cn_name, `status`, created_at, updated_at
+  </sql>
+</mapper>

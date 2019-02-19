@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+	    http://code.alibabatech.com/schema/dubbo
+	    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="product" owner="" logger="slf4j"/>
+    <dubbo:registry id="zk" protocol="zookeeper" address="${dubbo.zk.address}"/>
+    <dubbo:protocol name="dubbo" dispatcher="${dubbo.protocol.dispatcher}" server="netty" port="${dubbo.protocol.port}"/>
+
+    <dubbo:provider group="rm-mall" threadpool="${dubbo.provider.threadpool}" threads="${dubbo.provider.threads}"
+                    delay="-1" timeout="${dubbo.provider.timeout}" retries="${dubbo.provider.retries}"
+                    accesslog="true" loadbalance="random" cluster="failover">
+        <dubbo:service interface="net.realme.mall.product.facade.ProductSpuService" class="net.realme.mall.product.impl.ProductSpuServiceImpl" version="1.0" />
+        <dubbo:service interface="net.realme.mall.product.facade.ProductSkuService" class="net.realme.mall.product.impl.ProductSkuServiceImpl" version="1.0" />
+        <dubbo:service interface="net.realme.mall.product.facade.ProductDetailService" class="net.realme.mall.product.impl.ProductDetailServiceImpl" version="1.0" />
+    </dubbo:provider>
+</beans>

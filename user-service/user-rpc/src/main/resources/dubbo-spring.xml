@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+	    http://code.alibabatech.com/schema/dubbo
+	    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="user" owner="91000044" logger="slf4j"/>
+    <dubbo:registry id="zk" protocol="zookeeper" address="${dubbo.zk.address}"/>
+    <dubbo:protocol name="dubbo" dispatcher="all" server="netty" port="${dubbo.protocol.port}"/>
+
+    <dubbo:provider group="rm-mall" threadpool="fixed" threads="${dubbo.provider.threads}"
+                    delay="-1" timeout="1000" retries="1"
+                    accesslog="true" loadbalance="random" cluster="failover" validation="true">
+        <dubbo:service interface="net.realme.mall.user.facade.UserAddressService" class="net.realme.mall.user.impl.UserAddressNetServiceImpl" version="1.0" />
+        <dubbo:service interface="net.realme.mall.user.facade.NotificationService" class="net.realme.mall.user.impl.NotificationServiceImpl" timeout="5000" version="1.0" />
+    </dubbo:provider>
+
+    <dubbo:consumer group="rm-mall" timeout="2000" retries="0"
+                    loadbalance="random" cluster="failover" validation="true"/>
+    <dubbo:reference id="emailService" interface="net.realme.mall.basics.third.facade.EmailService" check="false" version="1.0"/>
+    <dubbo:reference id="awsNotifyService" interface="net.realme.mall.basics.third.facade.AwsNotifyService" check="false" version="1.0"/>
+    <dubbo:reference id="topicService" interface="net.realme.mall.basics.facade.TopicService" check="false" version="1.0"/>
+
+</beans>

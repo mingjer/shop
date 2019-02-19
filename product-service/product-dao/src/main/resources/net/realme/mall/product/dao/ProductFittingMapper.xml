@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.realme.mall.product.dao.ProductFittingMapper">
+  <resultMap id="BaseResultMap" type="net.realme.mall.product.model.ProductFitting">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="main_sku_id" jdbcType="INTEGER" property="mainSkuId" />
+    <result column="part_sku_id" jdbcType="INTEGER" property="partSkuId" />
+    <result column="sequence" jdbcType="INTEGER" property="sequence" />
+    <result column="created_time" jdbcType="BIGINT" property="createdTime" />
+    <result column="updated_time" jdbcType="BIGINT" property="updatedTime" />
+    <result column="created_by" jdbcType="INTEGER" property="createdBy" />
+    <result column="updated_by" jdbcType="INTEGER" property="updatedBy" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, main_sku_id, part_sku_id, `sequence`, created_time, updated_time, created_by, 
+    updated_by, `status`
+  </sql>
+
+  <insert id="batchInsert">
+    insert into `product_fitting` ( main_sku_id, part_sku_id,sequence, created_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.mainSkuId,jdbcType=INTEGER}, #{item.partSkuId,jdbcType=INTEGER}, #{item.sequence,jdbcType=INTEGER}, #{item.createdTime,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+</mapper>

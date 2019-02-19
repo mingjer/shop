@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.realme.scm.wms.dao.WmsShippingNotifyMapper">
+  <resultMap id="BaseResultMap" type="net.realme.scm.wms.model.WmsShippingNotify">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="fulfillment_center" jdbcType="VARCHAR" property="fulfillmentCenter" />
+    <result column="delivered_at" jdbcType="VARCHAR" property="deliveredAt" />
+    <result column="invoice_url" jdbcType="VARCHAR" property="invoiceUrl" />
+    <result column="waybill" jdbcType="VARCHAR" property="waybill" />
+    <result column="vendor" jdbcType="VARCHAR" property="vendor" />
+    <result column="created_at" jdbcType="BIGINT" property="createdAt" />
+    <result column="updated_at" jdbcType="BIGINT" property="updatedAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, order_no, fulfillment_center, delivered_at, invoice_url, waybill, vendor, created_at, 
+    updated_at
+  </sql>
+  <insert id="batchInsert">
+    insert into wms_shipping_notify (order_no,fulfillment_center,delivered_at,invoice_url,waybill,vendor,created_at) values
+    <foreach collection="list" item="item" separator=",">
+      ( #{item.orderNo},#{item.fulfillmentCenter},#{item.deliveredAt},#{item.invoiceUrl},#{item.waybill},#{item.vendor},#{item.createdAt})
+    </foreach>
+  </insert>
+  <select id="queryWayBilByOrderId" parameterType="int">
+    select
+    <include refid="Base_Column_List"></include>
+    from wms_shipping_notify where order_no=#{order_no}
+  </select>
+</mapper>

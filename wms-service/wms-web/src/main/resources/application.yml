@@ -1,0 +1,32 @@
+spring.main.banner-mode: log
+spring.profiles.include:
+  - datasource
+  - common
+
+spring.profiles.active: dev
+server.port: 8084
+
+---
+spring:
+  profiles: dev
+
+spring.application.name: WMS-开发
+
+---
+spring:
+  profiles: test
+
+spring.application.name: WMS-测试
+
+---
+spring:
+  profiles: awstest
+
+spring.application.name: WMS-测试
+
+---
+spring:
+  profiles: prod
+
+
+spring.application.name: WMS

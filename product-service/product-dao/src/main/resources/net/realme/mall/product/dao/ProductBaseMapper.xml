@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.realme.mall.product.dao.ProductBaseMapper">
+  <resultMap id="BaseResultMap" type="net.realme.mall.product.model.ProductBase">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="brand_code" jdbcType="VARCHAR" property="brandCode" />
+    <result column="category_code" jdbcType="VARCHAR" property="categoryCode" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="sequence" jdbcType="INTEGER" property="sequence" />
+    <result column="created_time" jdbcType="BIGINT" property="createdTime" />
+    <result column="updated_time" jdbcType="BIGINT" property="updatedTime" />
+    <result column="created_by" jdbcType="INTEGER" property="createdBy" />
+    <result column="updated_by" jdbcType="INTEGER" property="updatedBy" />
+    <result column="shelf_status" jdbcType="TINYINT" property="shelfStatus" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="net.realme.mall.product.model.ProductBase">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="extra_params" jdbcType="LONGVARCHAR" property="extraParams" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    product_id, `name`, brand_code, category_code, `type`, description, `sequence`, created_time, 
+    updated_time, created_by, updated_by, shelf_status, `status`
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    extra_params
+  </sql>
+</mapper>

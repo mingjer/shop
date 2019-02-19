@@ -1,0 +1,35 @@
+spring.main.banner-mode: log
+spring.profiles.include:
+  - datasource
+  - common
+
+spring.profiles.active: dev
+spring.main.web-application-type: none
+
+---
+spring:
+  profiles: dev
+
+spring.application.name: 商城消息-开发
+
+#spring.rocketmq.nameServer: 172.16.44.159:9876;172.16.44.160:9876
+
+---
+spring:
+  profiles: test
+
+spring.application.name: 商城消息-测试
+
+spring.rocketmq.nameServer: 172.16.44.161:9876;172.16.44.162:9876
+
+---
+spring:
+  profiles: awstest
+
+spring.application.name: 商城消息-UAT
+
+---
+spring:
+  profiles: prod
+
+spring.application.name: 商城消息

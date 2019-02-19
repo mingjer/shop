@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.realme.mall.basics.dao.IndiaPinCodeMapper">
+  <resultMap id="BaseResultMap" type="net.realme.mall.basics.model.IndiaPinCode">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pin_code" jdbcType="VARCHAR" property="pinCode" />
+    <result column="country_id" jdbcType="VARCHAR" property="countryId" />
+    <result column="country_name" jdbcType="VARCHAR" property="countryName" />
+    <result column="province_id" jdbcType="VARCHAR" property="provinceId" />
+    <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+    <result column="city_id" jdbcType="VARCHAR" property="cityId" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="prepaid" jdbcType="TINYINT" property="prepaid" />
+    <result column="cod" jdbcType="TINYINT" property="cod" />
+    <result column="created_at" jdbcType="BIGINT" property="createdAt" />
+    <result column="created_by" jdbcType="INTEGER" property="createdBy" />
+    <result column="updated_at" jdbcType="BIGINT" property="updatedAt" />
+    <result column="updated_by" jdbcType="INTEGER" property="updatedBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, pin_code, country_id, country_name, province_id, province_name, city_id, city_name, 
+    prepaid, cod, created_at, created_by, updated_at, updated_by
+  </sql>
+</mapper>

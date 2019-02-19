@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.realme.mall.oms.admin.dao.AdminUserMapper">
+  <resultMap id="BaseResultMap" type="net.realme.mall.oms.admin.model.AdminUser">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="phone_hash" jdbcType="VARCHAR" property="phoneHash" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="last_login_at" jdbcType="BIGINT" property="lastLoginAt" />
+    <result column="login_fail_times" jdbcType="INTEGER" property="loginFailTimes" />
+    <result column="created_by" jdbcType="INTEGER" property="createdBy" />
+    <result column="created_at" jdbcType="BIGINT" property="createdAt" />
+    <result column="updated_by" jdbcType="INTEGER" property="updatedBy" />
+    <result column="updated_at" jdbcType="BIGINT" property="updatedAt" />
+    <collection property="roles" ofType="net.realme.mall.oms.admin.model.AdminRole">
+      <id column="role_id" jdbcType="INTEGER" property="id" />
+      <result column="code" jdbcType="VARCHAR" property="code" />
+      <result column="role_name" jdbcType="VARCHAR" property="name" />
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, nickname, `name`, email, phone, phone_hash, `password`, `status`, remark, last_login_at, 
+    login_fail_times, created_by, created_at, updated_by, updated_at
+  </sql>
+
+  <sql id="Base_Column_List_With_Roles">
+    u.id, u.nickname, u.name, u.email, u.phone, u.phone_hash, u.password, u.status, u.remark,
+    u.last_login_at, u.login_fail_times, u.created_by, u.created_at, u.updated_by, u.updated_at, r.id as role_id,
+    r.name as role_name, r.code
+  </sql>
+
+  <select id="loadUserByUsername" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_With_Roles" />
+    from admin_user as u LEFT OUTER join admin_user_role as x on u.id = x.user_id
+    LEFT OUTER JOIN admin_role as r on x.role_id = r.id
+    where u.name = #{loginName, jdbcType=VARCHAR} or u.email = #{loginName, jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByPkWithRoles" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_With_Roles" />
+    from admin_user as u LEFT OUTER join admin_user_role as x on u.id = x.user_id
+    LEFT OUTER JOIN admin_role as r on x.role_id = r.id
+    where u.id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByNameWithRoles" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_With_Roles" />
+    from admin_user as u LEFT OUTER join admin_user_role as x on u.id = x.user_id
+    LEFT OUTER JOIN admin_role as r on x.role_id = r.id
+    where u.name = #{name,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllWithRoles" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_With_Roles"/>
+    from
+    admin_user as u LEFT OUTER join admin_user_role as x on u.id = x.user_id
+    LEFT OUTER JOIN admin_role as r on x.role_id = r.id
+    order by u.updated_at desc
+  </select>
+</mapper>

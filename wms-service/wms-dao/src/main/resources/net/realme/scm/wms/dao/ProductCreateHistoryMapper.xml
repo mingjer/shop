@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.realme.scm.wms.dao.ProductCreateHistoryMapper">
+  <resultMap id="BaseResultMap" type="net.realme.scm.wms.model.ProductCreateHistory">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="sku" jdbcType="VARCHAR" property="sku" />
+    <result column="sku_name" jdbcType="VARCHAR" property="skuName" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="vendor" jdbcType="VARCHAR" property="vendor" />
+    <result column="created_at" jdbcType="BIGINT" property="createdAt" />
+    <result column="updated_at" jdbcType="BIGINT" property="updatedAt" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, tag, sku, sku_name, `number`, vendor, created_at, updated_at, `status`
+  </sql>
+ <select id="batchInsert">
+    insert into wms_product_create_history values
+    <foreach collection="list" item="item" separator=",">
+      (null,#{item.tag},#{item.sku},#{item.skuName},#{item.number},#{item.vendor},#{item.createdAt},null,#{item.status} )
+    </foreach>
+
+  </select>
+</mapper>

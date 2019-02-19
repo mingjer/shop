@@ -1,0 +1,31 @@
+spring.main.banner-mode: log
+spring.profiles.include:
+  - datasource
+  - common
+
+spring.profiles.active: dev
+spring.main.web-application-type: none
+
+---
+spring:
+  profiles: dev
+
+spring.application.name: WMS定时任务-开发
+
+---
+spring:
+  profiles: test
+
+spring.application.name: WMS定时任务-测试
+
+---
+spring:
+  profiles: awstest
+
+spring.application.name: WMS定时任务-UAT
+
+---
+spring:
+  profiles: prod
+
+spring.application.name: WMS定时任务

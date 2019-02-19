@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+	    http://code.alibabatech.com/schema/dubbo
+	    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <dubbo:application name="store-task" owner="91000156" logger="slf4j"/>
+    <dubbo:registry id="zk" protocol="zookeeper" address="${dubbo.zk.address}"/>
+    <dubbo:protocol name="dubbo" dispatcher="all" server="netty" />
+
+    <dubbo:consumer group="rm-mall" timeout="2000" retries="0"
+                    loadbalance="random" cluster="failover" validation="true" check="false"/>
+
+    <dubbo:reference id="orderService" interface="net.realme.mall.order.facade.OrderService" version="1.0"/>
+    <dubbo:reference id="productSkuService" interface="net.realme.mall.product.facade.ProductSkuService" check="false" version="1.0"/>
+    <!--<dubbo:reference id="productSkuService" interface="net.realme.mall.product.facade.ProductSkuService" version="1.0"/>-->
+
+
+    <!-- 本地-->
+<!--    <dubbo:reference id="orderService" interface="net.realme.mall.order.facade.OrderService" check="false" version="1.0" />-->
+    <!-- <dubbo:reference id="orderService" interface="net.realme.mall.order.facade.OrderService" check="false" version="1.0" url="dubbo://localhost:20884"/>-->
+<!--    <dubbo:reference id="productSkuService" interface="net.realme.mall.product.facade.ProductSkuService" check="false" version="1.0" url="dubbo://localhost:20882"/>-->
+
+</beans>

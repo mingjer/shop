@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.realme.mall.user.dao.UserAddressMapper">
+  <resultMap id="BaseResultMap" type="net.realme.mall.user.model.UserAddress">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="ssoid" jdbcType="BIGINT" property="ssoid" />
+    <result column="site_code" jdbcType="VARCHAR" property="siteCode" />
+    <result column="pin_code" jdbcType="VARCHAR" property="pinCode" />
+    <result column="province_id" jdbcType="VARCHAR" property="provinceId" />
+    <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+    <result column="city_id" jdbcType="VARCHAR" property="cityId" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="county_name" jdbcType="VARCHAR" property="countyName" />
+    <result column="county_id" jdbcType="VARCHAR" property="countyId" />
+    <result column="town_name" jdbcType="VARCHAR" property="townName" />
+    <result column="town_id" jdbcType="VARCHAR" property="townId" />
+    <result column="address1" jdbcType="VARCHAR" property="address1" />
+    <result column="address2" jdbcType="VARCHAR" property="address2" />
+    <result column="full_name" jdbcType="VARCHAR" property="fullName" />
+    <result column="post_code" jdbcType="VARCHAR" property="postCode" />
+    <result column="phone_calling_codes" jdbcType="VARCHAR" property="phoneCallingCodes" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="is_default" jdbcType="TINYINT" property="isDefault" />
+    <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+    <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="geo_hash" jdbcType="VARCHAR" property="geoHash" />
+    <result column="created_at" jdbcType="BIGINT" property="createdAt" />
+    <result column="updated_at" jdbcType="BIGINT" property="updatedAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, ssoid, site_code, pin_code, province_id, province_name, city_id, city_name, county_name, 
+    county_id, town_name, town_id, address1, address2, full_name, post_code, phone_calling_codes, 
+    phone_number, `status`, is_default, longitude, latitude, email, geo_hash, created_at, 
+    updated_at
+  </sql>
+</mapper>

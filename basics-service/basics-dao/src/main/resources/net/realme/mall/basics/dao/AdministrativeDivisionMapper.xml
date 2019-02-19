@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.realme.mall.basics.dao.AdministrativeDivisionMapper">
+  <resultMap id="BaseResultMap" type="net.realme.mall.basics.model.AdministrativeDivision">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="division_id" jdbcType="VARCHAR" property="divisionId" />
+    <result column="division_code" jdbcType="VARCHAR" property="divisionCode" />
+    <result column="division_type" jdbcType="VARCHAR" property="divisionType" />
+    <result column="division_name" jdbcType="VARCHAR" property="divisionName" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="parent_name" jdbcType="VARCHAR" property="parentName" />
+    <result column="id_path" jdbcType="VARCHAR" property="idPath" />
+    <result column="name_path" jdbcType="VARCHAR" property="namePath" />
+    <result column="has_child" jdbcType="TINYINT" property="hasChild" />
+    <result column="country_code" jdbcType="VARCHAR" property="countryCode" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="sequence" jdbcType="INTEGER" property="sequence" />
+    <result column="created_at" jdbcType="BIGINT" property="createdAt" />
+    <result column="created_by" jdbcType="INTEGER" property="createdBy" />
+    <result column="updated_at" jdbcType="BIGINT" property="updatedAt" />
+    <result column="updated_by" jdbcType="INTEGER" property="updatedBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, division_id, division_code, division_type, division_name, parent_id, parent_name, 
+    id_path, name_path, has_child, country_code, `status`, `sequence`, created_at, created_by, 
+    updated_at, updated_by
+  </sql>
+  
+  <insert id="batchInsert">
+		INSERT INTO `administrative_division` (id, division_id, division_code, division_type, division_name, parent_id, parent_name, id_path, name_path,
+		has_child, country_code, `status`, `sequence`, created_at, created_by, updated_at, updated_by)
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.id,jdbcType=INTEGER},
+			#{item.divisionId,jdbcType=VARCHAR},
+			#{item.divisionCode,jdbcType=VARCHAR},
+			#{item.divisionType,jdbcType=VARCHAR},
+			#{item.divisionName,jdbcType=VARCHAR},
+			#{item.parentId,jdbcType=VARCHAR},
+			#{item.parentName,jdbcType=VARCHAR},
+			#{item.idPath,jdbcType=VARCHAR},
+			#{item.namePath,jdbcType=VARCHAR},
+			#{item.hasChild,jdbcType=TINYINT},
+			#{item.countryCode,jdbcType=VARCHAR},
+			#{item.status,jdbcType=TINYINT},
+			#{item.sequence,jdbcType=INTEGER},
+			#{item.createdAt,jdbcType=BIGINT},
+			#{item.createdBy,jdbcType=INTEGER},
+			#{item.updatedAt,jdbcType=BIGINT},
+			#{item.updatedBy,jdbcType=INTEGER})
+		</foreach>
+	</insert>
+</mapper>

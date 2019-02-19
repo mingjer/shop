@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+	    http://code.alibabatech.com/schema/dubbo
+	    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <dubbo:application name="basics-service" owner="91000044" logger="slf4j"/>
+    <dubbo:registry id="zk" protocol="zookeeper" address="${dubbo.zk.address}"/>
+    <dubbo:protocol name="dubbo" dispatcher="${dubbo.protocol.dispatcher}" server="netty" port="${dubbo.protocol.port}"/>
+
+    <dubbo:provider group="rm-mall" threadpool="${dubbo.provider.threadpool}" threads="${dubbo.provider.threads}"
+                    delay="-1" timeout="${dubbo.provider.timeout}" retries="${dubbo.provider.retries}"
+                    accesslog="true" loadbalance="random" cluster="failover">
+        <dubbo:service interface="net.realme.mall.basics.third.facade.EmailService" class="net.realme.mall.basics.third.impl.EmailServiceImpl" version="1.0" />
+        <dubbo:service interface="net.realme.mall.basics.third.facade.AwsNotifyService" class="net.realme.mall.basics.third.impl.AwsNotifyServiceImpl" timeout="5000" version="1.0" />
+        <dubbo:service interface="net.realme.mall.basics.facade.CurrencyService" class="net.realme.mall.basics.impl.CurrencyServiceImpl" version="2.0" />
+        <dubbo:service interface="net.realme.mall.basics.facade.SiteService" class="net.realme.mall.basics.impl.SiteServiceImpl" version="2.0" />
+        <dubbo:service interface="net.realme.mall.basics.facade.TranslationService" class="net.realme.mall.basics.impl.TranslationServiceImpl" version="2.0" />
+        <dubbo:service interface="net.realme.mall.basics.facade.IndiaPinCodeService" class="net.realme.mall.basics.impl.IndiaPinCodeServiceImpl" version="1.0" />
+        <dubbo:service interface="net.realme.mall.basics.facade.ServiceSiteService" class="net.realme.mall.basics.impl.ServiceSiteServiceImpl" version="1.0" />
+        <dubbo:service interface="net.realme.mall.basics.facade.TopicService" class="net.realme.mall.basics.impl.TopicServiceImpl" version="1.0" />
+        <dubbo:service interface="net.realme.mall.basics.facade.DivisionService" class="net.realme.mall.basics.impl.DivisionServiceImpl" version="1.0" />
+    </dubbo:provider>
+</beans>

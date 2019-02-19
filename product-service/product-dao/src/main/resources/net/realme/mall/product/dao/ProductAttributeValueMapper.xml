@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.realme.mall.product.dao.ProductAttributeValueMapper">
+  <resultMap id="BaseResultMap" type="net.realme.mall.product.model.ProductAttributeValue">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="attr_id" jdbcType="INTEGER" property="attrId" />
+    <result column="attr_val" jdbcType="VARCHAR" property="attrVal" />
+    <result column="sequence" jdbcType="INTEGER" property="sequence" />
+    <result column="created_time" jdbcType="BIGINT" property="createdTime" />
+    <result column="updated_time" jdbcType="BIGINT" property="updatedTime" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, product_id, attr_id, attr_val, `sequence`, created_time, updated_time, `status`
+  </sql>
+
+  <insert id="batchInsert">
+    insert into `product_attribute_value` (product_id, attr_id, attr_val, sequence, created_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.productId,jdbcType=BIGINT}, #{item.attrId,jdbcType=INTEGER}, #{item.attrVal,jdbcType=VARCHAR}, #{item.sequence,jdbcType=INTEGER}, #{item.createdTime,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+</mapper>

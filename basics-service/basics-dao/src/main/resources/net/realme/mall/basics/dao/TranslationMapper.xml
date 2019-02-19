@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.realme.mall.basics.dao.TranslationMapper">
+  <resultMap id="Translation" type="net.realme.mall.basics.model.Translation">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="site_code" jdbcType="VARCHAR" property="siteCode" />
+    <result column="t9n_key" jdbcType="VARCHAR" property="t9nKey" />
+    <result column="t9n_value" jdbcType="VARCHAR" property="t9nValue" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="created_at" jdbcType="BIGINT" property="createdAt" />
+    <result column="updated_at" jdbcType="BIGINT" property="updatedAt" />
+
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, site_code, t9n_key, t9n_value, status, created_at, updated_at
+  </sql>
+
+     <insert id="batchInsert">
+        insert into `translation` (id, site_code, t9n_key, t9n_value, status, created_at, updated_at)
+        values
+        <foreach collection="list" item="item" separator=",">
+          (#{item.id,jdbcType=INTEGER}, #{item.siteCode,jdbcType=VARCHAR}, #{item.t9nKey,jdbcType=VARCHAR},  #{item.t9nValue,jdbcType=VARCHAR}, #{item.status,jdbcType=TINYINT}, #{item.createdAt,jdbcType=BIGINT}, #{item.updatedAt,jdbcType=BIGINT})
+        </foreach>
+      </insert>
+
+</mapper>

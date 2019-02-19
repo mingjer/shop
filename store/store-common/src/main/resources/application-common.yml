@@ -1,0 +1,146 @@
+#india payments
+payment.in:
+  billdesk:
+    merchant-id: REALMEUAT
+    checksum-key: JTg56Fr1g5g7
+    security-id: realmeuat
+    redirect-url:  https://uat.billdesk.com/pgidsk/PGIMerchantPayment
+    query-url:  https://uat.billdesk.com/pgidsk/PGIQueryController
+
+---
+spring:
+  profiles: dev
+
+dubbo.zk.address: 172.16.44.159:2181,172.16.44.160:2181,172.16.44.161:2181
+
+#redis
+spring.redis:
+  cluster:
+    max-redirects: 3
+    nodes: 172.16.44.159:6379,172.16.44.160:6379,172.16.44.161:6379,172.16.44.159:6380,172.16.44.160:6380,172.16.44.161:6380
+  database: 0
+  timeout: 2000ms
+
+#rocketmq
+spring.rocketmq:
+  nameServer: 172.16.44.159:9876;172.16.44.160:9876
+  producer:
+    group: rm-mall
+    retryTimesWhenSendAsyncFailed: 0
+    sendMsgTimeout: 3000
+    compressMsgBodyOverHowmuch: 4096
+    maxMessageSize: 4194304
+    retryAnotherBrokerWhenNotStoreOk: false
+    retryTimesWhenSendFailed: 2
+
+
+site.url.prefix: https://dev.myoas.net
+api.url.prefix: https://dev-api.myoas.net
+payment.url.prefix: https://payment.myoas.net
+shopping.site.url.prefix: https://dev-buy.myoas.net
+
+---
+spring:
+  profiles: test,test1
+
+dubbo.zk.address: 172.16.44.184:2181,172.16.44.185:2181,172.16.44.186:2181
+
+spring.redis:
+  cluster:
+    max-redirects: 3
+    nodes: 172.16.44.164:6379,172.16.44.164:6380,172.16.44.164:6381,172.16.44.164:7379,172.16.44.164:7380,172.16.44.164:7381
+  database: 0
+  timeout: 2000ms
+
+#rocketmq
+spring.rocketmq:
+  nameServer: 172.16.44.161:9876;172.16.44.162:9876
+  producer:
+    group: rm-mall
+    retryTimesWhenSendAsyncFailed: 0
+    sendMsgTimeout: 3000
+    compressMsgBodyOverHowmuch: 4096
+    maxMessageSize: 4194304
+    retryAnotherBrokerWhenNotStoreOk: false
+    retryTimesWhenSendFailed: 2
+
+site.url.prefix: https://test1.myoas.net
+api.url.prefix: https://test1-api.myoas.net
+payment.url.prefix: https://payment.myoas.net
+shopping.site.url.prefix: https://test1-buy.myoas.net
+
+
+---
+spring:
+  profiles: test2
+
+site.url.prefix: https://test2.myoas.net
+api.url.prefix: https://test2-api.myoas.net
+shopping.site.url.prefix: https://test2-buy.myoas.net
+
+
+
+---
+spring:
+  profiles: awstest
+
+
+#dubbo.zk.address: 172.25.4.20:2181,172.25.4.21:2181,172.25.5.20:2181
+dubbo.zk.address: 172.25.254.95:2181,172.25.254.95:2182,172.25.254.95:2183
+
+spring.redis:
+  cluster:
+    max-redirects: 3
+    nodes:
+      - redis-prod-redis-01.aw2mps.clustercfg.aps1.cache.amazonaws.com:6379
+  database: 0
+  timeout: 2000ms
+
+#rocketmq
+spring.rocketmq:
+  nameServer: 172.25.4.21:9876;172.25.5.20:9876
+  producer:
+    group: rm-mall
+    retryTimesWhenSendAsyncFailed: 0
+    sendMsgTimeout: 3000
+    compressMsgBodyOverHowmuch: 4096
+    maxMessageSize: 4194304
+    retryAnotherBrokerWhenNotStoreOk: false
+    retryTimesWhenSendFailed: 2
+
+site.url.prefix: https://pre-www.realme.com
+api.url.prefix: https://pre-api.realme.com
+payment.url.prefix: https://pre-payment.realme.com
+shopping.site.url.prefix: https://pre-buy.realme.com
+
+
+---
+spring:
+  profiles: prod
+
+dubbo.zk.address: 172.25.4.20:2181,172.25.4.21:2181,172.25.5.20:2181
+
+spring.redis:
+  cluster:
+    max-redirects: 3
+    nodes:
+      - redis-prod-redis-01.aw2mps.clustercfg.aps1.cache.amazonaws.com:6379
+  database: 0
+  timeout: 2000ms
+
+#rocketmq
+spring.rocketmq:
+  nameServer: 172.25.4.21:9876;172.25.5.20:9876
+  producer:
+    group: rm-mall
+    retryTimesWhenSendAsyncFailed: 0
+    sendMsgTimeout: 3000
+    compressMsgBodyOverHowmuch: 4096
+    maxMessageSize: 4194304
+    retryAnotherBrokerWhenNotStoreOk: false
+    retryTimesWhenSendFailed: 2
+
+site.url.prefix: https://www.realme.com
+api.url.prefix: https://api.realme.com
+payment.url.prefix: https://payment.realme.com
+shopping.site.url.prefix: https://buy.realme.com

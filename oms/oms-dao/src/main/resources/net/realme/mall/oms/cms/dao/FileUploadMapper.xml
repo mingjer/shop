@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.realme.mall.oms.cms.dao.FileUploadMapper">
+  <resultMap id="BaseResultMap" type="net.realme.mall.oms.cms.model.FileUpload">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="format" jdbcType="VARCHAR" property="format" />
+    <result column="uploadtime" jdbcType="BIGINT" property="uploadtime" />
+    <result column="savapath" jdbcType="VARCHAR" property="savapath" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="size" jdbcType="BIGINT" property="size" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, format, uploadtime, savapath, description, username, `size`
+  </sql>
+</mapper>

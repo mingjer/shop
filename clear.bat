@@ -1,0 +1,1 @@
+for /r  %%a in (.) do @if exist "%%a\target" rd /s /q "%%a\target" 

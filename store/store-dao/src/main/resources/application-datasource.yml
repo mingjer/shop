@@ -1,0 +1,109 @@
+mybatis:
+  mapper-locations: classpath:net/realme/mall/store/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+---
+spring:
+  profiles: dev
+
+#druid datasource configurations
+#spring.datasource.druid:
+#  driver-class-name: com.mysql.jdbc.Driver
+#
+#  name: rm_user
+#  url: jdbc:mysql://172.16.44.162:3306/rm_user?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf-8
+#  username: root
+#  password: Real#8866me
+#
+#  initial-size: 5
+#  max-active: 100
+#  min-idle: 5
+#  max-wait: 60000
+#
+#  web-stat-filter.enabled: false
+#  filters: slf4j
+#  filter.slf4j.enabled: true
+#  filter.slf4j.statement-executable-sql-log-enable: true
+
+#  pool-prepared-statements:
+#  max-pool-prepared-statement-per-connection-size:
+#
+#  max-open-prepared-statements:
+#  validation-query:
+#  validation-query-timeout:
+#  test-on-borrow:
+#  test-on-return:
+#  test-while-idle:
+#  time-between-eviction-runs-millis:
+#  min-evictable-idle-time-millis:
+#  max-evictable-idle-time-millis:
+
+---
+spring:
+  profiles: test
+
+spring.datasource.druid:
+  driver-class-name: com.mysql.jdbc.Driver
+
+  name: rm_user
+  url: jdbc:mysql://172.16.44.164:3306/rm_user?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf-8
+  username: realme
+  password: PrJJmjNMgsgu1J2x
+
+  initial-size: 5
+  max-active: 100
+  min-idle: 5
+  max-wait: 60000
+
+  web-stat-filter.enabled: false
+  filters: slf4j
+  filter.slf4j.enabled: true
+  filter.slf4j.statement-executable-sql-log-enable: true
+
+---
+spring:
+  profiles: awstest
+
+spring.datasource.druid:
+  driver-class-name: com.mysql.jdbc.Driver
+
+  name: rm_user
+  url: jdbc:mysql://realme-test-mysql.cntq7afvediv.ap-south-1.rds.amazonaws.com:3306/rm_user?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf-8
+  username: realme
+  password: L27ho82rs5agEkyM
+
+  initial-size: 5
+  max-active: 100
+  min-idle: 5
+  max-wait: 60000
+
+  web-stat-filter.enabled: false
+  filters: slf4j
+  filter.slf4j.enabled: true
+  filter.slf4j.statement-executable-sql-log-enable: true
+
+
+---
+spring:
+  profiles: prod
+
+
+spring.datasource.druid:
+  driver-class-name: com.mysql.jdbc.Driver
+
+  name: rm_user
+  url: jdbc:mysql://realme-prod-www-mysql-01.cntq7afvediv.ap-south-1.rds.amazonaws.com:3306/rm_user?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf-8
+  username: realme
+  password: rJqGgSCt^aVHP0iT
+
+  initial-size: 5
+  max-active: 100
+  min-idle: 5
+  max-wait: 60000
+
+  web-stat-filter.enabled: false
+  filters: slf4j
+  filter.slf4j.enabled: true
+  filter.slf4j.statement-executable-sql-log-enable: true

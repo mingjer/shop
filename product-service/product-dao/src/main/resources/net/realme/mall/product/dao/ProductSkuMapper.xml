@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.realme.mall.product.dao.ProductSkuMapper">
+  <resultMap id="BaseResultMap" type="net.realme.mall.product.model.ProductSku">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="sku_id" jdbcType="INTEGER" property="skuId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="sku_name" jdbcType="VARCHAR" property="skuName" />
+    <result column="marketing_name" jdbcType="VARCHAR" property="marketingName" />
+    <result column="sub_title" jdbcType="VARCHAR" property="subTitle" />
+    <result column="short_desc" jdbcType="VARCHAR" property="shortDesc" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="site_code" jdbcType="VARCHAR" property="siteCode" />
+    <result column="erp_code" jdbcType="VARCHAR" property="erpCode" />
+    <result column="ean_code" jdbcType="VARCHAR" property="eanCode" />
+    <result column="model" jdbcType="VARCHAR" property="model" />
+    <result column="pack_length" jdbcType="DOUBLE" property="packLength" />
+    <result column="pack_width" jdbcType="DOUBLE" property="packWidth" />
+    <result column="pack_height" jdbcType="DOUBLE" property="packHeight" />
+    <result column="pack_weight" jdbcType="DOUBLE" property="packWeight" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="user_defined_url" jdbcType="VARCHAR" property="userDefinedUrl" />
+    <result column="sale_status" jdbcType="TINYINT" property="saleStatus" />
+    <result column="time_zone" jdbcType="VARCHAR" property="timeZone" />
+    <result column="sale_start" jdbcType="BIGINT" property="saleStart" />
+    <result column="sale_end" jdbcType="BIGINT" property="saleEnd" />
+    <result column="reserve_start" jdbcType="BIGINT" property="reserveStart" />
+    <result column="reserve_end" jdbcType="BIGINT" property="reserveEnd" />
+    <result column="countdown_within" jdbcType="VARCHAR" property="countdownWithin" />
+    <result column="max_quantity" jdbcType="INTEGER" property="maxQuantity" />
+    <result column="overview_uri" jdbcType="VARCHAR" property="overviewUri" />
+    <result column="spec_image" jdbcType="VARCHAR" property="specImage" />
+    <result column="pc_pack_image" jdbcType="VARCHAR" property="pcPackImage" />
+    <result column="mobile_pack_image" jdbcType="VARCHAR" property="mobilePackImage" />
+    <result column="seo_title" jdbcType="VARCHAR" property="seoTitle" />
+    <result column="seo_keywords" jdbcType="VARCHAR" property="seoKeywords" />
+    <result column="seo_desc" jdbcType="VARCHAR" property="seoDesc" />
+    <result column="item_sites_url" jdbcType="VARCHAR" property="itemSitesUrl" />
+    <result column="spec_weights" jdbcType="VARCHAR" property="specWeights" />
+    <result column="created_time" jdbcType="BIGINT" property="createdTime" />
+    <result column="updated_time" jdbcType="BIGINT" property="updatedTime" />
+    <result column="created_by" jdbcType="INTEGER" property="createdBy" />
+    <result column="updated_by" jdbcType="INTEGER" property="updatedBy" />
+    <result column="shelf_status" jdbcType="TINYINT" property="shelfStatus" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    sku_id, product_id, product_name, sku_name, marketing_name, sub_title, short_desc, 
+    description, site_code, erp_code, ean_code, model, pack_length, pack_width, pack_height, 
+    pack_weight, price, user_defined_url, sale_status, time_zone, sale_start, sale_end, 
+    reserve_start, reserve_end, countdown_within, max_quantity, overview_uri, spec_image, 
+    pc_pack_image, mobile_pack_image, seo_title, seo_keywords, seo_desc, item_sites_url, 
+    spec_weights, created_time, updated_time, created_by, updated_by, shelf_status, `status`
+  </sql>
+
+  <select id="selectByEANCode" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from product_sku
+    where ean_code = #{erpCode, jdbcType=VARCHAR}
+    limit 1
+  </select>
+</mapper>

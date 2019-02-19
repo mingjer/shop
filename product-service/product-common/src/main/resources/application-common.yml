@@ -1,0 +1,66 @@
+#dubbo default configuration
+dubbo.protocol.port: 20882
+dubbo.protocol.dispatcher: all
+
+dubbo.provider.threads: 1000
+dubbo.provider.threadpool: fixed
+dubbo.provider.timeout: 1000
+dubbo.provider.retries: 1
+
+---
+spring:
+  profiles: dev
+
+dubbo.provider.threads: 20
+dubbo.zk.address: 172.16.44.159:2181,172.16.44.160:2181,172.16.44.161:2181
+
+spring.redis:
+  cluster:
+    max-redirects: 3
+    nodes: 172.16.44.159:6379,172.16.44.160:6379,172.16.44.161:6379,172.16.44.159:6380,172.16.44.160:6380,172.16.44.161:6380
+  database: 0
+  timeout: 2000ms
+
+---
+spring:
+  profiles: test
+
+dubbo.zk.address: 172.16.44.184:2181,172.16.44.185:2181,172.16.44.186:2181
+
+spring.redis:
+  cluster:
+    max-redirects: 3
+    nodes: 172.16.44.164:6379,172.16.44.164:6380,172.16.44.164:6381,172.16.44.164:7379,172.16.44.164:7380,172.16.44.164:7381
+  database: 0
+  timeout: 2000ms
+
+---
+spring:
+  profiles: awstest
+
+
+dubbo.zk.address: 172.25.254.95:2181,172.25.254.134:2181,172.25.254.210:2181
+
+spring.redis:
+  cluster:
+    max-redirects: 3
+    nodes:
+      - realme-test-rds.aw2mps.clustercfg.aps1.cache.amazonaws.com:6379
+  database: 0
+  timeout: 2000ms
+
+---
+spring:
+  profiles: prod
+
+# pre zk
+dubbo.zk.address: 172.25.254.95:2181,172.25.254.95:2182,172.25.254.95:2183
+# prod dubbo.zk.address: 172.25.4.20:2181,172.25.4.21:2181,172.25.5.20:2181
+
+spring.redis:
+  cluster:
+    max-redirects: 3
+    nodes:
+      - redis-prod-redis-01.aw2mps.clustercfg.aps1.cache.amazonaws.com:6379
+  database: 0
+  timeout: 2000ms

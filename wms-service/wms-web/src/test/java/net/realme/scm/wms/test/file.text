@@ -1,0 +1,1 @@
+#{item.order_no},#{item.fulfillment_center},#{item.delivered_at},#{item.invoice_url},#{item.waybill},#{item.vendor},#{item.created_at},#{item.updated_at}
